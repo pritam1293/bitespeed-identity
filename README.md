@@ -2,6 +2,13 @@
 
 A backend service for managing contact identity reconciliation with support for linking contacts based on email and phone number.
 
+**🚀 Live Production API:** https://bitespeed-olive.vercel.app
+
+**📍 Endpoints:**
+
+- Health: `GET /api/health`
+- Identify: `POST /api/identify`
+
 ## Prerequisites
 
 - Node.js (v18 or higher)
@@ -59,9 +66,27 @@ npm start
 
 ## API Endpoints
 
-### POST /identify
+### GET /api/health
+
+Health check endpoint to verify the service is running.
+
+**Live Production URL:** https://bitespeed-olive.vercel.app/api/health
+
+**Response:**
+
+```json
+{
+  "status": "OK",
+  "timestamp": "2026-02-27T10:30:00.000Z",
+  "uptime": 123.456
+}
+```
+
+### POST /api/identify
 
 Identifies and reconciles contact information.
+
+**Live Production URL:** https://bitespeed-olive.vercel.app/api/identify
 
 **Request Body:**
 
@@ -85,11 +110,18 @@ Identifies and reconciles contact information.
 }
 ```
 
-**Example PowerShell request:**
+**Example PowerShell request (Local):**
 
 ```powershell
 $body = @{ email = "test@example.com"; phoneNumber = "+1234567890" } | ConvertTo-Json
 Invoke-RestMethod -Uri http://localhost:3000/api/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
+```
+
+**Example PowerShell request (Production):**
+
+```powershell
+$body = @{ email = "test@example.com"; phoneNumber = "+1234567890" } | ConvertTo-Json
+Invoke-RestMethod -Uri https://bitespeed-olive.vercel.app/api/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
 ```
 
 ## Database Schema
