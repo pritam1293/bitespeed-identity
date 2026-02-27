@@ -17,7 +17,7 @@ const createApp = (): Application => {
   app.use(express.urlencoded({ extended: true }));
 
   // Health check endpoint
-  app.get('/bitespeed/api/health', (_req, res) => {
+  app.get('/api/health', (_req, res) => {
     res.status(200).json({
       status: 'OK',
       timestamp: new Date().toISOString(),
@@ -31,8 +31,8 @@ const createApp = (): Application => {
       message: 'Bitespeed Identity Reconciliation API',
       version: '1.0.0',
       endpoints: {
-        health: '/bitespeed/api/health',
-        identify: '/bitespeed/api/identify',
+        health: '/api/health',
+        identify: '/api/identify',
       },
     });
   });
@@ -42,7 +42,7 @@ const createApp = (): Application => {
   app.get('/favicon.png', (_req, res) => res.status(204).end());
 
   // API Routes
-  app.use('/bitespeed/api', contactRoutes);
+  app.use('/api', contactRoutes);
 
   // Error handling
   app.use(validateJsonBody);

@@ -52,8 +52,8 @@ const startServer = async () => {
     // Start listening
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
-      console.log(`Health check: http://localhost:${PORT}/bitespeed/api/health`);
-      console.log(`Identify endpoint: http://localhost:${PORT}/bitespeed/api/identify`);
+      console.log(`Health check: http://localhost:${PORT}/api/health`);
+      console.log(`Identify endpoint: http://localhost:${PORT}/api/identify`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

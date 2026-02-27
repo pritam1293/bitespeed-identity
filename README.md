@@ -89,7 +89,7 @@ Identifies and reconciles contact information.
 
 ```powershell
 $body = @{ email = "test@example.com"; phoneNumber = "+1234567890" } | ConvertTo-Json
-Invoke-RestMethod -Uri http://localhost:3000/bitespeed/api/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
+Invoke-RestMethod -Uri http://localhost:3000/api/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
 ```
 
 ## Database Schema
