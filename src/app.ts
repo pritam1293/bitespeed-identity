@@ -17,7 +17,7 @@ const createApp = (): Application => {
   app.use(express.urlencoded({ extended: true }));
 
   // Health check endpoint
-  app.get('/health', (_req, res) => {
+  app.get('/bitespeed/api/health', (_req, res) => {
     res.status(200).json({
       status: 'OK',
       timestamp: new Date().toISOString(),
@@ -26,7 +26,7 @@ const createApp = (): Application => {
   });
 
   // API Routes
-  app.use('/', contactRoutes);
+  app.use('/bitespeed/api', contactRoutes);
 
   // Error handling
   app.use(validateJsonBody);

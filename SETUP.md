@@ -68,7 +68,8 @@ You should see:
 ```
 Database connected successfully
 Server is running on port 3000
-Identify endpoint: http://localhost:3000/identify
+Health check: http://localhost:3000/bitespeed/api/health
+Identify endpoint: http://localhost:3000/bitespeed/api/identify
 ```
 
 ## Step 6: Test the API
@@ -76,14 +77,14 @@ Identify endpoint: http://localhost:3000/identify
 ### Quick Health Check
 
 ```powershell
-Invoke-RestMethod -Uri http://localhost:3000/health -UseBasicParsing
+Invoke-RestMethod -Uri http://localhost:3000/bitespeed/api/health -UseBasicParsing
 ```
 
 ### Test Identity Endpoint
 
 ```powershell
 $body = @{ email = "test@example.com"; phoneNumber = "1234567890" } | ConvertTo-Json
-Invoke-RestMethod -Uri http://localhost:3000/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
+Invoke-RestMethod -Uri http://localhost:3000/bitespeed/api/identify -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
 ```
 
 **Example Response:**

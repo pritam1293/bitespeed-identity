@@ -42,7 +42,7 @@ process.on('unhandledRejection', (reason: any) => {
   gracefulShutdown('unhandledRejection');
 });
 
-// Start server
+// Start server (for local development)
 const startServer = async () => {
   try {
     // Test database connection
@@ -52,7 +52,8 @@ const startServer = async () => {
     // Start listening
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
-      console.log(`Identify endpoint: http://localhost:${PORT}/identify`);
+      console.log(`Health check: http://localhost:${PORT}/bitespeed/api/health`);
+      console.log(`Identify endpoint: http://localhost:${PORT}/bitespeed/api/identify`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);
@@ -60,4 +61,10 @@ const startServer = async () => {
   }
 };
 
-startServer();
+// Only start server if not in serverless environment (Vercel)
+if (process.env.VERCEL !== '1') {
+  startServer();
+}
+
+// Export for Vercel serverless deployment
+export default app;
