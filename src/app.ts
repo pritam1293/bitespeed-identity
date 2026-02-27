@@ -25,6 +25,22 @@ const createApp = (): Application => {
     });
   });
 
+  // Root route
+  app.get('/', (_req, res) => {
+    res.status(200).json({
+      message: 'Bitespeed Identity Reconciliation API',
+      version: '1.0.0',
+      endpoints: {
+        health: '/bitespeed/api/health',
+        identify: '/bitespeed/api/identify',
+      },
+    });
+  });
+
+  // Ignore favicon requests
+  app.get('/favicon.ico', (_req, res) => res.status(204).end());
+  app.get('/favicon.png', (_req, res) => res.status(204).end());
+
   // API Routes
   app.use('/bitespeed/api', contactRoutes);
 
